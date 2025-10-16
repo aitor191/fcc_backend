@@ -29,7 +29,7 @@ app.get('/api/whoami', function (req, res) {
   /* 2 - Obtener el lenguaje preferido del header Accept-Language
   Este header contiene información sobre los idiomas que el cliente acepta
   */
-  let language = req.acceptsLanguages('Accept-Language');
+  let language = req.get('Accept-Language');
 
   /* 3 - Obtener información del software/navegador del header User-Agent
    Este header identifica el navegador, sistema operativo y versión
