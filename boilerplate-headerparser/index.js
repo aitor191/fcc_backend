@@ -20,8 +20,28 @@ app.get('/', function (req, res) {
 });
 
 // your first API endpoint...
-app.get('/api/hello', function (req, res) {
-  res.json({ greeting: 'hello API' });
+app.get('/api/whoami', function (req, res) {
+  /* 1 - Obtener la dirección IP del cliente
+  req.ip proporciona la IP directamente en Express
+  */
+  let ipaddress = req.ip;
+
+  /* 2 - Obtener el lenguaje preferido del header Accept-Language
+  Este header contiene información sobre los idiomas que el cliente acepta
+  */
+  let lang = req.acceptsLanguages('Accept-Language');
+
+  /* 3 - Obtener información del software/navegador del header User-Agent
+   Este header identifica el navegador, sistema operativo y versión
+  */
+ let software = req.get('User-Agent');
+
+ // 4 - Devuelve el JSON con los datos requeridos
+  res.json({
+    ipaddress : ipaddress,
+    lang : lang,
+    software : software
+  });
 });
 
 // listen for requests :)
